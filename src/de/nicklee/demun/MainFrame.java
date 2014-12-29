@@ -190,12 +190,12 @@ public class MainFrame extends JFrame {
 		gbc_tabbedPane.gridy = 1;
 		contentPane.add(tabbedPane, gbc_tabbedPane);
 		
-		JPanel GeneralSpeakerList = new JPanel();
-		tabbedPane.addTab("General Speakers List", null, GeneralSpeakerList, null);
-		GeneralSpeakerList.setLayout(new BorderLayout(0, 0));
+		JPanel generalSpeakersList = new JPanel();
+		tabbedPane.addTab("General Speakers List", null, generalSpeakersList, null);
+		generalSpeakersList.setLayout(new BorderLayout(0, 0));
 		
 		GenSpeakerTimer genSpeakerTimer = new GenSpeakerTimer();
-		GeneralSpeakerList.add(genSpeakerTimer, BorderLayout.CENTER);
+		generalSpeakersList.add(genSpeakerTimer, BorderLayout.CENTER);
 		GridBagLayout gridBagLayout = (GridBagLayout) genSpeakerTimer.getLayout();
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 		gridBagLayout.rowHeights = new int[]{47, 79, 20, 0, 0, 0};
@@ -203,7 +203,7 @@ public class MainFrame extends JFrame {
 		gridBagLayout.columnWidths = new int[] {0};
 		
 		JPanel controlPanel = new JPanel();
-		GeneralSpeakerList.add(controlPanel, BorderLayout.EAST);
+		generalSpeakersList.add(controlPanel, BorderLayout.EAST);
 		GridBagLayout gbl_controlPanel = new GridBagLayout();
 		gbl_controlPanel.columnWidths = new int[]{0, 225, 0};
 		gbl_controlPanel.rowHeights = new int[]{28, 25, 25, 25, 25, 25, 150, 75, 0};
@@ -211,7 +211,7 @@ public class MainFrame extends JFrame {
 		gbl_controlPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		controlPanel.setLayout(gbl_controlPanel);
 		
-		JPanel setSpeakerTime = new JPanel();
+		JPanel setSpeakerTime = new SetSpeakerTimePanel();
 		GridBagConstraints gbc_setSpeakerTime = new GridBagConstraints();
 		gbc_setSpeakerTime.anchor = GridBagConstraints.NORTHWEST;
 		gbc_setSpeakerTime.insets = new Insets(0, 0, 5, 0);
@@ -219,30 +219,6 @@ public class MainFrame extends JFrame {
 		gbc_setSpeakerTime.gridy = 0;
 		controlPanel.add(setSpeakerTime, gbc_setSpeakerTime);
 		setSpeakerTime.setLayout(new BoxLayout(setSpeakerTime, BoxLayout.X_AXIS));
-		
-		JLabel lblNewLabel = new JLabel("Set Speaking Time:\n");
-		setSpeakerTime.add(lblNewLabel);
-		
-		JSpinner minSpinner = new JSpinner();
-		minSpinner.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				commState.defaultSpeakingMinutes = (int) minSpinner.getValue();
-			}
-		});
-		minSpinner.setEditor(new JSpinner.NumberEditor(minSpinner, "00"));
-		setSpeakerTime.add(minSpinner);
-		
-		JLabel lblNewLabel_1 = new JLabel(" : ");
-		setSpeakerTime.add(lblNewLabel_1);
-		
-		JSpinner secSpinner = new JSpinner();
-		secSpinner.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				commState.defaultSpeakingSeconds = (int) secSpinner.getValue();
-			}
-		});
-		secSpinner.setEditor(new JSpinner.NumberEditor(secSpinner, "00"));
-		setSpeakerTime.add(secSpinner);
 		
 		JButton btnNewButton_4 = new JButton("<html><center>Yield to<br>Delegate</center></html>");
 		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
@@ -319,20 +295,45 @@ public class MainFrame extends JFrame {
 				JButton btnNewButton_3 = new JButton("Delete");
 				panel_1.add(btnNewButton_3);
 				
-				JPanel panel = new JPanel();
-				tabbedPane.addTab("New tab", null, panel, null);
-				panel.setLayout(new BorderLayout(0, 0));
+				JPanel singleSpeaker = new JPanel();
+				tabbedPane.addTab("Single Speaker", null, singleSpeaker, null);
+				singleSpeaker.setLayout(new BorderLayout(0, 0));
 				
-				GenSpeakerTimer genSpeakerTimer_1 = new GenSpeakerTimer();
-				GridBagLayout gridBagLayout_1 = (GridBagLayout) genSpeakerTimer_1.getLayout();
-				gridBagLayout_1.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
-				gridBagLayout_1.rowHeights = new int[]{47, 79, 20, 0, 0, 0};
-				gridBagLayout_1.columnWeights = new double[]{0.0, 0.0};
-				gridBagLayout_1.columnWidths = new int[]{0, 0};
-				panel.add(genSpeakerTimer_1, BorderLayout.WEST);
+				GenSpeakerTimer singleSpeakerTimer = new GenSpeakerTimer();
+				GridBagLayout gbl_singleSpeakerTimer = (GridBagLayout) singleSpeakerTimer.getLayout();
+				gbl_singleSpeakerTimer.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
+				gbl_singleSpeakerTimer.rowHeights = new int[]{47, 79, 20, 0, 0, 0};
+				gbl_singleSpeakerTimer.columnWeights = new double[]{1.0};
+				gbl_singleSpeakerTimer.columnWidths = new int[]{0};
+				singleSpeaker.add(singleSpeakerTimer, BorderLayout.CENTER);
+				
+				JPanel singleSpeakerControlPanel = new JPanel();
+				singleSpeaker.add(singleSpeakerControlPanel, BorderLayout.EAST);
+				GridBagLayout gbl_singleSpeakerControlPanel = new GridBagLayout();
+				gbl_singleSpeakerControlPanel.columnWidths = new int[]{247, 0};
+				gbl_singleSpeakerControlPanel.rowHeights = new int[]{0, 0, 0};
+				gbl_singleSpeakerControlPanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+				gbl_singleSpeakerControlPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+				singleSpeakerControlPanel.setLayout(gbl_singleSpeakerControlPanel);
+				
+				SetSpeakerTimePanel setTime_Single = new SetSpeakerTimePanel();
+				GridBagConstraints gbc_setTime_Single = new GridBagConstraints();
+				gbc_setTime_Single.anchor = GridBagConstraints.WEST;
+				gbc_setTime_Single.insets = new Insets(0, 0, 5, 0);
+				gbc_setTime_Single.gridx = 0;
+				gbc_setTime_Single.gridy = 0;
+				singleSpeakerControlPanel.add(setTime_Single, gbc_setTime_Single);
+				
+				PresentCountriesList list = new PresentCountriesList();
+				GridBagConstraints gbc_list = new GridBagConstraints();
+				gbc_list.fill = GridBagConstraints.BOTH;
+				gbc_list.anchor = GridBagConstraints.NORTHWEST;
+				gbc_list.gridx = 0;
+				gbc_list.gridy = 1;
+				singleSpeakerControlPanel.add(list, gbc_list);
 		
 		MotionPanel motionManager = new MotionPanel();
-		motionManager.setMinimumSize(new Dimension(709, 225));
+		motionManager.setMinimumSize(new Dimension(710, 250));
 		motionManager.setMaximumSize(new Dimension(2147483647, 500));
 		GridBagConstraints gbc_motionManager = new GridBagConstraints();
 		gbc_motionManager.fill = GridBagConstraints.BOTH;
