@@ -79,7 +79,7 @@ public class MainFrame extends JFrame {
 		setTitle("DEMUN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 740);
-        setMinimumSize(new Dimension(950, 700));
+        setMinimumSize(new Dimension(950, 740));
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -212,6 +212,9 @@ public class MainFrame extends JFrame {
 				
 				DebatePanel CurrentDebatePanel = new DebatePanel();
 				tabbedPane.addTab("Current Debate", null, CurrentDebatePanel, null);
+				
+				VotingProcedurePanel rollCallVotePanel = new VotingProcedurePanel();
+				tabbedPane.addTab("Roll Call Vote", null, rollCallVotePanel, null);
 		
 		MotionPanel motionManager = new MotionPanel();
 		motionManager.setMinimumSize(new Dimension(710, 250));

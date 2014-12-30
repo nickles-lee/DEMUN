@@ -3,6 +3,11 @@ package de.nicklee.demun;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 public class SecondaryDisplay {
 
@@ -36,8 +41,13 @@ public class SecondaryDisplay {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 640, 460);
+		frame.setMinimumSize(new Dimension(500,400));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		DebateTimer debateTimer = new DebateTimer();
+		frame.getContentPane().add(debateTimer);
 	}
 	
 	public void toggleVisibility(){

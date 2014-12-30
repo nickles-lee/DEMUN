@@ -11,20 +11,20 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.CardLayout;
 
-public class DebatePanel extends JLayeredPane {
+public class DebateTimer extends JLayeredPane {
 	
 	private JPanel genSpeaker, moderatedCaucus, unmoderatedCaucus;
 	/**
 	 * Create the panel.
 	 */
-	public DebatePanel() {
+	public DebateTimer() {
 		setLayout(new CardLayout(0, 0));
 		
-		genSpeaker = new GenSpeakersListPanel();
+		genSpeaker = new GenSpeakerView();
 		setLayer(genSpeaker, 0);
 		add(genSpeaker, "name_4119277201351");
 		
-		moderatedCaucus = new ModeratedCaucusPanel();
+		moderatedCaucus = new ModeratedCaucusTimer();
 		setLayer(moderatedCaucus, 1);
 		add(moderatedCaucus, "name_4119295265475");
 		

@@ -22,7 +22,7 @@ public class GenSpeakerControlPanel extends JPanel {
 	public GenSpeakerControlPanel() {
 		GridBagLayout gbl_controlPanel = new GridBagLayout();
 		gbl_controlPanel.columnWidths = new int[]{0, 225, 0};
-		gbl_controlPanel.rowHeights = new int[]{32, 25, 25, 25, 25, 25, 150, 75, 0};
+		gbl_controlPanel.rowHeights = new int[]{32, 25, 25, 25, 25, 25, 150, 70, 0};
 		gbl_controlPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_controlPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		this.setLayout(gbl_controlPanel);
@@ -49,7 +49,7 @@ public class GenSpeakerControlPanel extends JPanel {
 		addToSpeakersList.setName("");
 		GridBagConstraints gbc_addToSpeakersList = new GridBagConstraints();
 		gbc_addToSpeakersList.insets = new Insets(0, 0, 5, 0);
-		gbc_addToSpeakersList.fill = GridBagConstraints.HORIZONTAL;
+		gbc_addToSpeakersList.fill = GridBagConstraints.BOTH;
 		gbc_addToSpeakersList.gridx = 1;
 		gbc_addToSpeakersList.gridy = 1;
 		this.add(addToSpeakersList, gbc_addToSpeakersList);
@@ -62,18 +62,15 @@ public class GenSpeakerControlPanel extends JPanel {
 				gbc_btnNewButton_6.gridy = 2;
 				this.add(btnNewButton_6, gbc_btnNewButton_6);
 				
-				JScrollPane scrollPane = new JScrollPane();
-				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-				gbc_scrollPane.gridheight = 5;
-				gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
-				gbc_scrollPane.fill = GridBagConstraints.BOTH;
-				gbc_scrollPane.gridx = 1;
-				gbc_scrollPane.gridy = 2;
-				this.add(scrollPane, gbc_scrollPane);
+				JPanel listView = new SpeakersListView();
+				GridBagConstraints gbc_panel = new GridBagConstraints();
+				gbc_panel.gridheight = 5;
+				gbc_panel.insets = new Insets(0, 0, 5, 0);
+				gbc_panel.fill = GridBagConstraints.BOTH;
+				gbc_panel.gridx = 1;
+				gbc_panel.gridy = 2;
+				add(listView, gbc_panel);
 				
-				JList speakersListView = new JList(MainFrame.getCommState().speakersList.toArray());
-				scrollPane.setViewportView(speakersListView);
-				speakersListView.setLayoutOrientation(JList.VERTICAL_WRAP);
 				
 				JButton btnNewButton_5 = new JButton("<html><center>Next<br>Speaker</center></html>");
 				GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
