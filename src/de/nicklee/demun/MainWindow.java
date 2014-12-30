@@ -1,56 +1,38 @@
 package de.nicklee.demun;
 
+import de.nicklee.demun.gui.genspeakerslist.TimerView;
+import de.nicklee.demun.gui.mainwindow.*;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.CardLayout;
-import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
 
 import javax.swing.JTabbedPane;
-import javax.swing.JSplitPane;
 
 import java.awt.GridBagLayout;
-
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.AbstractListModel;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import javax.swing.JSpinner;
 import javax.swing.JSeparator;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import java.awt.Toolkit;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JCheckBoxMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
 
-public class MainFrame extends JFrame {
+public class MainWindow extends JFrame {
 
 	protected JPanel contentPane;
 	private static CommitteeState commState;
-	private SecondaryDisplay secondWindow;
+	private SecondaryWindow secondWindow;
 
 	/**
 	 * Launch the application.
@@ -60,7 +42,7 @@ public class MainFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					MainWindow frame = new MainWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,9 +54,9 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	public MainWindow() {
 		commState = new CommitteeState();
-		secondWindow = new SecondaryDisplay();
+		secondWindow = new SecondaryWindow();
 
 		setTitle("DEMUN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,19 +151,19 @@ public class MainFrame extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 3.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setPreferredSize(new Dimension(560, 75));
-		headerPanel.setMinimumSize(new Dimension(560, 75));
-		headerPanel.setMaximumSize(new Dimension(2147483647, 75));
-		headerPanel.setTopic(commState.currentTopic);
-		headerPanel.setCommittee(commState.committeeName);
-		headerPanel.setPresentStats(5,18);
+		HeaderBar HeaderBar = new HeaderBar();
+		HeaderBar.setPreferredSize(new Dimension(560, 75));
+		HeaderBar.setMinimumSize(new Dimension(560, 75));
+		HeaderBar.setMaximumSize(new Dimension(2147483647, 75));
+		HeaderBar.setTopic(commState.getCurrentTopic());
+		HeaderBar.setCommittee(commState.getCommitteeName());
+		HeaderBar.setPresentStats(5,18);
 		GridBagConstraints gbc_headerPanel = new GridBagConstraints();
 		gbc_headerPanel.fill = GridBagConstraints.HORIZONTAL;
 		gbc_headerPanel.insets = new Insets(0, 0, 5, 0);
 		gbc_headerPanel.gridx = 0;
 		gbc_headerPanel.gridy = 0;
-		contentPane.add(headerPanel, gbc_headerPanel);
+		contentPane.add(HeaderBar, gbc_headerPanel);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setMinimumSize(new Dimension(560, 400));
@@ -192,14 +174,14 @@ public class MainFrame extends JFrame {
 		gbc_tabbedPane.gridy = 1;
 		contentPane.add(tabbedPane, gbc_tabbedPane);
 		
-		GenSpeakersListPanel generalSpeakersList = new GenSpeakersListPanel();
+		GeneralSpeakersConsole generalSpeakersList = new GeneralSpeakersConsole();
 		tabbedPane.addTab("General Speakers List", null, generalSpeakersList, null);
 				
 				JPanel singleSpeaker = new JPanel();
 				tabbedPane.addTab("Single Speaker", null, singleSpeaker, null);
 				singleSpeaker.setLayout(new BorderLayout(0, 0));
 				
-				GenSpeakerTimer singleSpeakerTimer = new GenSpeakerTimer();
+				TimerView singleSpeakerTimer = new TimerView();
 				GridBagLayout gbl_singleSpeakerTimer = (GridBagLayout) singleSpeakerTimer.getLayout();
 				gbl_singleSpeakerTimer.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 				gbl_singleSpeakerTimer.rowHeights = new int[]{47, 79, 20, 0, 0, 0};
@@ -207,16 +189,16 @@ public class MainFrame extends JFrame {
 				gbl_singleSpeakerTimer.columnWidths = new int[]{0};
 				singleSpeaker.add(singleSpeakerTimer, BorderLayout.CENTER);
 				
-				SingleSpeakerControlPanel singleSpeakerControlPanel = new SingleSpeakerControlPanel();
-				singleSpeaker.add(singleSpeakerControlPanel, BorderLayout.EAST);
+				SingleSpeakerConsole singleSpeakerConsole = new SingleSpeakerConsole();
+				singleSpeaker.add(singleSpeakerConsole, BorderLayout.EAST);
 				
-				DebatePanel CurrentDebatePanel = new DebatePanel();
-				tabbedPane.addTab("Current Debate", null, CurrentDebatePanel, null);
+				DynamicDebateConsole currentDynamicDebateConsole = new DynamicDebateConsole();
+				tabbedPane.addTab("Current Debate", null, currentDynamicDebateConsole, null);
 				
-				VotingProcedurePanel rollCallVotePanel = new VotingProcedurePanel();
-				tabbedPane.addTab("Roll Call Vote", null, rollCallVotePanel, null);
+				RollcallVoteConsole rollcallVoteConsole = new RollcallVoteConsole();
+				tabbedPane.addTab("Roll Call Vote", null, rollcallVoteConsole, null);
 		
-		MotionPanel motionManager = new MotionPanel();
+		MotionManager motionManager = new MotionManager();
 		motionManager.setMinimumSize(new Dimension(710, 250));
 		motionManager.setMaximumSize(new Dimension(2147483647, 500));
 		GridBagConstraints gbc_motionManager = new GridBagConstraints();

@@ -31,7 +31,7 @@ Java based committee manager for Model UN conferences</description>
 				<configuration>
 				  <archive>
 					<manifest>
-						<mainClass>de.nicklee.demun.MainFrame</mainClass>
+						<mainClass>de.nicklee.demun.MainWindow</mainClass>
 					</manifest>
 				  </archive>
 				</configuration>
@@ -49,6 +49,11 @@ Java based committee manager for Model UN conferences</description>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-jar-plugin</artifactId>
 			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.miglayout</groupId>
+			<artifactId>miglayout-swing</artifactId>
+			<version>4.2</version>
 		</dependency>
 	</dependencies>
 	<properties>

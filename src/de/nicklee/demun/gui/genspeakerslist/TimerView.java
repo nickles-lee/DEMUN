@@ -1,4 +1,6 @@
-package de.nicklee.demun;
+package de.nicklee.demun.gui.genspeakerslist;
+
+import de.nicklee.demun.flagHandler;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -23,12 +25,12 @@ import java.io.IOException;
 
 import javax.swing.SwingConstants;
 
-public class GenSpeakerTimer extends JPanel {
+public class TimerView extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public GenSpeakerTimer() {
+	public TimerView() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {0, 0};
 		gridBagLayout.rowHeights = new int[]{47, 79, 20, 0, 0, 0, 0};
@@ -56,7 +58,7 @@ public class GenSpeakerTimer extends JPanel {
 		gbc_CountryFlag.gridy = 1;
 		add(CountryFlag, gbc_CountryFlag);
 		
-		JLabel lblNewLabel = new JLabel("<html>\n\t<center>\n\t\t<h1>\n\t\t\t<nobr>\n\t\t\t\tUnited States of America\n\t\t\t</nobr>\n\t\t</h1>\n\t</center>\n</html>");
+		JLabel lblNewLabel = new JLabel("<html>\n\t<center>\n\t\t<h1>\n\t\t\t<nobr>\n\t\t\t\t" + "United States of America" + "\n\t\t\t</nobr>\n\t\t</h1>\n\t</center>\n</html>");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
