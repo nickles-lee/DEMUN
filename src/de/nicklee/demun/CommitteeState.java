@@ -11,6 +11,7 @@ class CommitteeState {
 	public int defaultSpeakingSeconds;
 	public String committeeName;
 	public String currentTopic;
+	public String debateType;
 	
 	public CommitteeState(){
 		overallCountryList.add("I need stuff here");
@@ -27,6 +28,15 @@ class CommitteeState {
 	
 	public String getPresentStats(){
 		return presentCountryList.size() + " / " + overallCountryList.size() + " (1/2 = " + (int)Math.ceil(overallCountryList.size() / 2.0) + "; 2/3 = " + (int)Math.ceil(overallCountryList.size() / 1.5) + ")";
+	}
+	
+	public void setDebateType(String type){
+		debateType = type;
+		//Send update event!
+	}
+	
+	public String getDebateType(){
+		return "moderatedCaucus";
 	}
 	
 	}

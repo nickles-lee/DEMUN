@@ -192,20 +192,8 @@ public class MainFrame extends JFrame {
 		gbc_tabbedPane.gridy = 1;
 		contentPane.add(tabbedPane, gbc_tabbedPane);
 		
-		JPanel generalSpeakersList = new JPanel();
+		GenSpeakersListPanel generalSpeakersList = new GenSpeakersListPanel();
 		tabbedPane.addTab("General Speakers List", null, generalSpeakersList, null);
-		generalSpeakersList.setLayout(new BorderLayout(0, 0));
-		
-		GenSpeakerTimer genSpeakerTimer = new GenSpeakerTimer();
-		generalSpeakersList.add(genSpeakerTimer, BorderLayout.CENTER);
-		GridBagLayout gridBagLayout = (GridBagLayout) genSpeakerTimer.getLayout();
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 1.0};
-		gridBagLayout.rowHeights = new int[]{47, 79, 20, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0};
-		gridBagLayout.columnWidths = new int[] {0};
-		
-		GenSpeakerControlPanel controlPanel = new GenSpeakerControlPanel();
-		generalSpeakersList.add(controlPanel, BorderLayout.EAST);
 				
 				JPanel singleSpeaker = new JPanel();
 				tabbedPane.addTab("Single Speaker", null, singleSpeaker, null);
@@ -219,32 +207,10 @@ public class MainFrame extends JFrame {
 				gbl_singleSpeakerTimer.columnWidths = new int[]{0};
 				singleSpeaker.add(singleSpeakerTimer, BorderLayout.CENTER);
 				
-				JPanel singleSpeakerControlPanel = new JPanel();
+				SingleSpeakerControlPanel singleSpeakerControlPanel = new SingleSpeakerControlPanel();
 				singleSpeaker.add(singleSpeakerControlPanel, BorderLayout.EAST);
-				GridBagLayout gbl_singleSpeakerControlPanel = new GridBagLayout();
-				gbl_singleSpeakerControlPanel.columnWidths = new int[]{247, 0};
-				gbl_singleSpeakerControlPanel.rowHeights = new int[]{0, 0, 0};
-				gbl_singleSpeakerControlPanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-				gbl_singleSpeakerControlPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-				singleSpeakerControlPanel.setLayout(gbl_singleSpeakerControlPanel);
 				
-				SetSpeakerTimePanel setTime_Single = new SetSpeakerTimePanel();
-				GridBagConstraints gbc_setTime_Single = new GridBagConstraints();
-				gbc_setTime_Single.anchor = GridBagConstraints.WEST;
-				gbc_setTime_Single.insets = new Insets(0, 0, 5, 0);
-				gbc_setTime_Single.gridx = 0;
-				gbc_setTime_Single.gridy = 0;
-				singleSpeakerControlPanel.add(setTime_Single, gbc_setTime_Single);
-				
-				PresentCountriesList list = new PresentCountriesList();
-				GridBagConstraints gbc_list = new GridBagConstraints();
-				gbc_list.fill = GridBagConstraints.BOTH;
-				gbc_list.anchor = GridBagConstraints.NORTHWEST;
-				gbc_list.gridx = 0;
-				gbc_list.gridy = 1;
-				singleSpeakerControlPanel.add(list, gbc_list);
-				
-				JPanel CurrentDebatePanel = new JPanel();
+				DebatePanel CurrentDebatePanel = new DebatePanel();
 				tabbedPane.addTab("Current Debate", null, CurrentDebatePanel, null);
 		
 		MotionPanel motionManager = new MotionPanel();

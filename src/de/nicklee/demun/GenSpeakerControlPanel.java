@@ -53,30 +53,14 @@ public class GenSpeakerControlPanel extends JPanel {
 		gbc_addToSpeakersList.gridx = 1;
 		gbc_addToSpeakersList.gridy = 1;
 		this.add(addToSpeakersList, gbc_addToSpeakersList);
-		
-		JButton btnNewButton_5 = new JButton("<html><center>Next<br>Speaker</center></html>");
-		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
-		gbc_btnNewButton_5.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_5.gridx = 0;
-		gbc_btnNewButton_5.gridy = 2;
-		this.add(btnNewButton_5, gbc_btnNewButton_5);
 				
 				JButton btnNewButton_6 = new JButton("<html><center>Pause<br>Speaker</center></html>");
 				GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
 				gbc_btnNewButton_6.fill = GridBagConstraints.BOTH;
 				gbc_btnNewButton_6.insets = new Insets(0, 0, 5, 5);
 				gbc_btnNewButton_6.gridx = 0;
-				gbc_btnNewButton_6.gridy = 3;
+				gbc_btnNewButton_6.gridy = 2;
 				this.add(btnNewButton_6, gbc_btnNewButton_6);
-				
-				JButton button = new JButton("<html><center>Yield to<br>Chair</center></html>");
-				GridBagConstraints gbc_button = new GridBagConstraints();
-				gbc_button.fill = GridBagConstraints.BOTH;
-				gbc_button.insets = new Insets(0, 0, 5, 5);
-				gbc_button.gridx = 0;
-				gbc_button.gridy = 4;
-				this.add(button, gbc_button);
 				
 				JScrollPane scrollPane = new JScrollPane();
 				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -90,6 +74,30 @@ public class GenSpeakerControlPanel extends JPanel {
 				JList speakersListView = new JList(MainFrame.getCommState().speakersList.toArray());
 				scrollPane.setViewportView(speakersListView);
 				speakersListView.setLayoutOrientation(JList.VERTICAL_WRAP);
+				
+				JButton btnNewButton_5 = new JButton("<html><center>Next<br>Speaker</center></html>");
+				GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+				gbc_btnNewButton_5.fill = GridBagConstraints.BOTH;
+				gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
+				gbc_btnNewButton_5.gridx = 0;
+				gbc_btnNewButton_5.gridy = 3;
+				this.add(btnNewButton_5, gbc_btnNewButton_5);
+				
+				JButton btnyieldToquestions = new JButton("<html><center>Yield to<br>Questions</center></html>");
+				GridBagConstraints gbc_btnyieldToquestions = new GridBagConstraints();
+				gbc_btnyieldToquestions.fill = GridBagConstraints.BOTH;
+				gbc_btnyieldToquestions.insets = new Insets(0, 0, 5, 5);
+				gbc_btnyieldToquestions.gridx = 0;
+				gbc_btnyieldToquestions.gridy = 4;
+				add(btnyieldToquestions, gbc_btnyieldToquestions);
+				
+				JButton button = new JButton("<html><center>Yield to<br>Chair</center></html>");
+				GridBagConstraints gbc_button = new GridBagConstraints();
+				gbc_button.fill = GridBagConstraints.BOTH;
+				gbc_button.insets = new Insets(0, 0, 5, 5);
+				gbc_button.gridx = 0;
+				gbc_button.gridy = 5;
+				this.add(button, gbc_button);
 				
 				JPanel panel_1 = new JPanel();
 				GridBagConstraints gbc_panel_1 = new GridBagConstraints();
