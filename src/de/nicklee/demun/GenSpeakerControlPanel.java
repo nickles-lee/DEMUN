@@ -22,7 +22,7 @@ public class GenSpeakerControlPanel extends JPanel {
 	public GenSpeakerControlPanel() {
 		GridBagLayout gbl_controlPanel = new GridBagLayout();
 		gbl_controlPanel.columnWidths = new int[]{0, 225, 0};
-		gbl_controlPanel.rowHeights = new int[]{28, 25, 25, 25, 25, 25, 150, 75, 0};
+		gbl_controlPanel.rowHeights = new int[]{32, 25, 25, 25, 25, 25, 150, 75, 0};
 		gbl_controlPanel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_controlPanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		this.setLayout(gbl_controlPanel);
