@@ -1,10 +1,12 @@
 package de.nicklee.demun;
 
+import javax.xml.bind.JAXBContext;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommitteeState {
-    private List<String> masterCountryList = new ArrayList<String>();
+    private List<Country> masterCountryList = new ArrayList<Country>();
     private List<String> presentCountryList = new ArrayList<String>();
     private List<String> speakersList = new ArrayList<String>();
     //More lists will be added
@@ -15,11 +17,11 @@ public class CommitteeState {
     public String debateType;
 
     public CommitteeState() {
-        getMasterCountryList().add("I need stuff here");
-        getMasterCountryList().add("I need stuff here");
-        getMasterCountryList().add("I need stuff here");
-        getMasterCountryList().add("I need stuff here");
-        getMasterCountryList().add("I need stuff here");
+        try {
+            getMasterCountryList().add(new Country("United States","United States of America","UNST.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         getPresentCountryList().add("USA");
         getPresentCountryList().add("Not USA");
         getSpeakersList().add("George Washington");
@@ -40,11 +42,11 @@ public class CommitteeState {
         return "moderatedCaucus";
     }
 
-    public List<String> getMasterCountryList() {
+    public List<Country> getMasterCountryList() {
         return masterCountryList;
     }
 
-    public void setMasterCountryList(List<String> masterCountryList) {
+    public void setMasterCountryList(List<Country> masterCountryList) {
         this.masterCountryList = masterCountryList;
     }
 
