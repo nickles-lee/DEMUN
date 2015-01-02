@@ -13,11 +13,23 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CountryImporter {
     public static void main(String argv[]) {
+        List<Country> countryList = importDefaultCountryXML();
+        for(Country i : countryList){
+            System.out.println(i);
+        }
+
+    }
+
+    public static List<Country> importDefaultCountryXML(){
+        ArrayList<Country> returnList = new ArrayList<Country>();
 
         try {
             String countryListURI = CountryImporter.class.getResource("/de/nicklee/demun/resources/countries.xml").toURI().toString();
@@ -27,30 +39,31 @@ public class CountryImporter {
 
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
             NodeList nList = doc.getElementsByTagName("country");
-
-            System.out.println("----------------------------");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
 
                 Node nNode = nList.item(temp);
 
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
 
-                    System.out.println("Short Name : " + eElement.getElementsByTagName("shortname").item(0).getTextContent());
-                    System.out.println("Long Name : " + eElement.getElementsByTagName("longname").item(0).getTextContent());
-                    System.out.println("FlagID : " + eElement.getElementsByTagName("flagname").item(0).getTextContent());
-
+                    returnList.add(new Country(
+                            eElement.getElementsByTagName("shortname").item(0).getTextContent(),
+                            eElement.getElementsByTagName("longname").item(0).getTextContent(),
+                            eElement.getElementsByTagName("flagname").item(0).getTextContent()));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return returnList;
+
+    }
+
+    public static List<Country> importCustomCountryXML(){
+        return new ArrayList<Country>();
     }
 }

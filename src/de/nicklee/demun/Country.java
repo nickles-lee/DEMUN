@@ -16,10 +16,14 @@ public class Country {
 	private String flagName;
 	private Image flagData;
 
-	public Country(String sname, String lname, String flagname) throws IOException {
+	public Country(String sname, String lname, String flagname){
 		this.setShortName(sname);
 		this.setLongName(lname);
-		this.setFlagImage(ImageIO.read(Country.class.getResource("/de/nicklee/demun/resources/flags/" + flagname)));
+		try {
+			this.setFlagImage(ImageIO.read(Country.class.getResource("/de/nicklee/demun/resources/flags/" + flagname)));
+		}catch(Exception ex){
+			System.out.println("[Error: Incorrect flagfile for "+shortName + ", " + flagName);
+		}
 	}
 
 	public Country (String sname, String lname, byte[] flagDataBase64) throws IOException {

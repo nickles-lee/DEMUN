@@ -1,113 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <defaultCountries>
-    <country>
-        <shortname>Afghanistan</shortname>
-        <longname>Islamic Republic of Afghanistan</longname>
-        <flagname>afghanistan.png</flagname>
-    </country>
-    <country>
-        <shortname>Albania</shortname>
-        <longname>Republic of Albania</longname>
-        <flagname>albania.png</flagname>
-    </country>
-    <country>
-        <shortname>Andorra</shortname>
-        <longname>Principality of the Valleys of Andorra</longname>
-        <flagname>andorra.png</flagname>
-    </country>
-    <country>
-        <shortname>Angola</shortname>
-        <longname>Republic of Angola</longname>
-        <flagname>angola.png</flagname>
-    </country>
-    <country>
-        <shortname>Antigua and Barbuda</shortname>
-        <longname>Antigua and Barbuda</longname>
-        <flagname>antigua.png</flagname>
-    </country>
-    <country>
-        <shortname>Argentina</shortname>
-        <longname>Argentine Republic</longname>
-        <flagname>argentina.png</flagname>
-    </country>
-    <country>
-        <shortname>Armenia</shortname>
-        <longname>Republic of Armenia</longname>
-        <flagname>armenia.png</flagname>
-    </country>
-    <country>
-        <shortname>Australia</shortname>
-        <longname>Commonwealth of Australia</longname>
-        <flagname>australia.png</flagname>
-    </country>
-    <country>
-        <shortname>Austria</shortname>
-        <longname>Republic of Austria</longname>
-        <flagname>austria.png</flagname>
-    </country>
-    <country>
-        <shortname>Azerbaijan</shortname>
-        <longname>Republic of Azerbaijan</longname>
-        <flagname>azerbaijan.png</flagname>
-    </country>
+    <unvotingmembers>
+        <country>
+            <shortname>Afghanistan</shortname>
+            <longname>Islamic Republic of Afghanistan</longname>
+            <flagname>afghanistan.png</flagname>
+        </country>
+        <country>
+            <shortname>Albania</shortname>
+            <longname>Republic of Albania</longname>
+            <flagname>albania.png</flagname>
+        </country>
+        <country>
+            <shortname>Andorra</shortname>
+            <longname>Principality of the Valleys of Andorra</longname>
+            <flagname>andorra.png</flagname>
+        </country>
+        <country>
+            <shortname>Angola</shortname>
+            <longname>Republic of Angola</longname>
+            <flagname>angola.png</flagname>
+        </country>
+        <country>
+            <shortname>Antigua and Barbuda</shortname>
+            <longname>Antigua and Barbuda</longname>
+            <flagname>antigua.png</flagname>
+        </country>
+        <country>
+            <shortname>Argentina</shortname>
+            <longname>Argentine Republic</longname>
+            <flagname>argentina.png</flagname>
+        </country>
+        <country>
+            <shortname>Armenia</shortname>
+            <longname>Republic of Armenia</longname>
+            <flagname>armenia.png</flagname>
+        </country>
+        <country>
+            <shortname>Australia</shortname>
+            <longname>Commonwealth of Australia</longname>
+            <flagname>australia.png</flagname>
+        </country>
+        <country>
+            <shortname>Austria</shortname>
+            <longname>Republic of Austria</longname>
+            <flagname>austria.png</flagname>
+        </country>
+        <country>
+            <shortname>Azerbaijan</shortname>
+            <longname>Republic of Azerbaijan</longname>
+            <flagname>azerbaijan.png</flagname>
+        </country>
 
-    <country>
-        <shortname>Bahamas</shortname>
-        <longname>Commonwealth of the Bahamas</longname>
-        <flagname>bahamas.png</flagname>
-    </country>
-    <country>
-        <shortname>Bahrain</shortname>
-        <longname>Kingdom of Bahrain</longname>
-        <flagname>bahrain.png</flagname>
-    </country>
-    <country>
-        <shortname>Bangladesh</shortname>
-        <longname>People's Republic of Bangladesh</longname>
-        <flagname>bangladesh.png</flagname>
-    </country>
-    <country>
-        <shortname>Barbados</shortname>
-        <longname>Barbados</longname>
-        <flagname>barbados.png</flagname>
-    </country>
-    <country>
-        <shortname>Belarus</shortname>
-        <longname>Republic of Belarus</longname>
-        <flagname>belarus.png</flagname>
-    </country>
-    <country>
-        <shortname>Belgium</shortname>
-        <longname>Kingdom of Belgium</longname>
-        <flagname>belgium.png</flagname>
-    </country>
-    <country>
-        <shortname></shortname>
-        <longname></longname>
-        <flagname></flagname>
-    </country>
-    <country>
-        <shortname></shortname>
-        <longname></longname>
-        <flagname></flagname>
-    </country>
+        <country>
+            <shortname>Bahamas</shortname>
+            <longname>Commonwealth of the Bahamas</longname>
+            <flagname>bahamas.png</flagname>
+        </country>
+        <country>
+            <shortname>Bahrain</shortname>
+            <longname>Kingdom of Bahrain</longname>
+            <flagname>bahrain.png</flagname>
+        </country>
+        <country>
+            <shortname>Bangladesh</shortname>
+            <longname>People's Republic of Bangladesh</longname>
+            <flagname>bangladesh.png</flagname>
+        </country>
+        <country>
+            <shortname>Barbados</shortname>
+            <longname>Barbados</longname>
+            <flagname>barbados.png</flagname>
+        </country>
+        <country>
+            <shortname>Belarus</shortname>
+            <longname>Republic of Belarus</longname>
+            <flagname>belarus.png</flagname>
+        </country>
+        <country>
+            <shortname>Belgium</shortname>
+            <longname>Kingdom of Belgium</longname>
+            <flagname>belgium.png</flagname>
+        </country>
+        <!--To be continued later. This is functional enough.-->
 
-
-
-
-
-
-
-
-
-    <country>
-        <shortname>United States</shortname>
-        <longname>United States of America</longname>
-        <flagname>UNST.png</flagname>
-    </country>
-    <country>
-        <shortname>Canada</shortname>
-        <longname>Canada</longname>
-        <flagname>CNDA.png</flagname>
-    </country>
+    </unvotingmembers>
 </defaultCountries>

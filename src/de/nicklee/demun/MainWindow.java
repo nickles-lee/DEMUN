@@ -1,5 +1,6 @@
 package de.nicklee.demun;
 
+import de.nicklee.demun.gui.committeeSettingsDialog;
 import de.nicklee.demun.gui.genspeakerslist.TimerView;
 import de.nicklee.demun.gui.mainwindow.*;
 
@@ -33,6 +34,9 @@ public class MainWindow extends JFrame {
 	protected JPanel contentPane;
 	private static CommitteeState commState;
 	private SecondaryWindow secondWindow;
+	private HeaderBar headerBar;
+	private MainWindow selfReference;
+	private JMenuItem menuItem_topicA, menuItem_topicB;
 
 	/**
 	 * Launch the application.
@@ -55,6 +59,7 @@ public class MainWindow extends JFrame {
 	 * Create the frame.
 	 */
 	public MainWindow() {
+		selfReference = this;
 		commState = new CommitteeState();
 		secondWindow = new SecondaryWindow();
 
@@ -74,12 +79,6 @@ public class MainWindow extends JFrame {
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Export Committee");
 		mnNewMenu.add(mntmNewMenuItem_2);
-		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Create Committee");
-		mnNewMenu.add(mntmNewMenuItem_6);
-		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Modify Committee");
-		mnNewMenu.add(mntmNewMenuItem_7);
 		
 		JSeparator separator = new JSeparator();
 		mnNewMenu.add(separator);
@@ -125,20 +124,52 @@ public class MainWindow extends JFrame {
 		JMenu topicSelectMenu = new JMenu("Select Topic");
 		mnNewMenu_1.add(topicSelectMenu);
 		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Undefined");
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("General Discussion");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				commState.setCurrentTopic("General Discussion");
+				selfReference.update();
+			}
+		});
 		topicSelectMenu.add(mntmNewMenuItem_9);
 		
 		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Agenda Setting");
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				commState.setCurrentTopic("Agenda Setting");
+				selfReference.update();
+			}
+		});
 		topicSelectMenu.add(mntmNewMenuItem_12);
 		
-		JMenuItem mntmNewMenuItem_11 = new JMenuItem("Topic A: $SHORTNAME$");
-		topicSelectMenu.add(mntmNewMenuItem_11);
+		menuItem_topicA = new JMenuItem("Topic A: " + commState.getTopic1());
+		menuItem_topicA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				commState.setCurrentTopic(commState.getTopic1());
+				selfReference.update();
+			}
+		});
+		topicSelectMenu.add(menuItem_topicA);
 		
-		JMenuItem mntmNewMenuItem_13 = new JMenuItem("Topic B: $SHORTNAME$");
-		topicSelectMenu.add(mntmNewMenuItem_13);
+		menuItem_topicB = new JMenuItem("Topic B: " + commState.getTopic2());
+		menuItem_topicB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				commState.setCurrentTopic(commState.getTopic2());
+				selfReference.update();
+			}
+		});
+		topicSelectMenu.add(menuItem_topicB);
 		
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Take Roll Call");
 		mnNewMenu_1.add(mntmNewMenuItem_10);
+		
+		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Committee Settings");
+		mntmNewMenuItem_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new committeeSettingsDialog(commState, selfReference);
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_7);
 		
 		JMenuItem mntmViewCommitteeLog = new JMenuItem("View Committee Log");
 		mnNewMenu_1.add(mntmViewCommitteeLog);
@@ -151,19 +182,19 @@ public class MainWindow extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 3.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		HeaderBar HeaderBar = new HeaderBar();
-		HeaderBar.setPreferredSize(new Dimension(560, 75));
-		HeaderBar.setMinimumSize(new Dimension(560, 75));
-		HeaderBar.setMaximumSize(new Dimension(2147483647, 75));
-		HeaderBar.setTopic(commState.getCurrentTopic());
-		HeaderBar.setCommittee(commState.getCommitteeName());
-		HeaderBar.setPresentStats(5,18);
-		GridBagConstraints gbc_headerPanel = new GridBagConstraints();
-		gbc_headerPanel.fill = GridBagConstraints.HORIZONTAL;
-		gbc_headerPanel.insets = new Insets(0, 0, 5, 0);
-		gbc_headerPanel.gridx = 0;
-		gbc_headerPanel.gridy = 0;
-		contentPane.add(HeaderBar, gbc_headerPanel);
+		headerBar = new HeaderBar(commState);
+		headerBar.setPreferredSize(new Dimension(560, 75));
+		headerBar.setMinimumSize(new Dimension(560, 75));
+		headerBar.setMaximumSize(new Dimension(2147483647, 75));
+		headerBar.setTopic(commState.getCurrentTopic());
+		headerBar.setCommittee(commState.getCommitteeName());
+		headerBar.setPresentStats(5,18);
+		GridBagConstraints gbc_headerBar = new GridBagConstraints();
+		gbc_headerBar.fill = GridBagConstraints.HORIZONTAL;
+		gbc_headerBar.insets = new Insets(0, 0, 5, 0);
+		gbc_headerBar.gridx = 0;
+		gbc_headerBar.gridy = 0;
+		contentPane.add(headerBar, gbc_headerBar);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setMinimumSize(new Dimension(560, 400));
@@ -209,5 +240,9 @@ public class MainWindow extends JFrame {
 	}
 	
 	public static CommitteeState getCommState(){if(commState != null) return commState; else return new CommitteeState();}
-	
+	public void update(){
+		headerBar.update();
+		menuItem_topicA.setText("Topic A: " + commState.getTopic1());
+		menuItem_topicB.setText("Topic B: " + commState.getTopic2());
+	}
 }

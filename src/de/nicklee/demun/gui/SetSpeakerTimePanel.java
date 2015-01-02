@@ -7,6 +7,8 @@ import java.awt.*;
 
 public class SetSpeakerTimePanel extends JPanel {
 
+    private JSpinner secSpinner;
+    private JSpinner minSpinner;
     /**
      * Create the panel.
      */
@@ -21,7 +23,7 @@ public class SetSpeakerTimePanel extends JPanel {
         JLabel lblNewLabel = new JLabel("Set Speaking Time:\n");
         this.add(lblNewLabel);
 
-        JSpinner minSpinner = new JSpinner();
+        minSpinner = new JSpinner();
         this.add(minSpinner);
         minSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -33,7 +35,7 @@ public class SetSpeakerTimePanel extends JPanel {
         JLabel lblNewLabel_1 = new JLabel(" : ");
         this.add(lblNewLabel_1);
 
-        JSpinner secSpinner = new JSpinner();
+        secSpinner = new JSpinner();
         this.add(secSpinner);
         secSpinner.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
@@ -44,4 +46,19 @@ public class SetSpeakerTimePanel extends JPanel {
 
     }
 
+    public int getSeconds() {
+        return (int) secSpinner.getValue();
+    }
+
+    public void setSeconds(int seconds) {
+        this.secSpinner.setValue(seconds);
+    }
+
+    public int getMinutes() {
+        return (int) minSpinner.getValue();
+    }
+
+    public void setMinutes(int minutes) {
+        this.minSpinner.setValue(minutes);
+    }
 }

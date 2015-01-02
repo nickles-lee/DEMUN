@@ -1,5 +1,7 @@
 package de.nicklee.demun.gui.mainwindow;
 
+import de.nicklee.demun.CommitteeState;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -8,11 +10,14 @@ public class HeaderBar extends JPanel {
     private JLabel topicDisplay;
     private JLabel committeeDisplay;
     private JLabel presentDisplay;
+    private CommitteeState parentCommitteeState;
 
     /**
      * Create the panel.
+     * @param parentCommitteeState
      */
-    public HeaderBar() {
+    public HeaderBar(CommitteeState cs) {
+        parentCommitteeState = cs;
         setLayout(new BorderLayout(0, 0));
 
         JPanel panel_1 = new JPanel();
@@ -41,7 +46,7 @@ public class HeaderBar extends JPanel {
         CommitteeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         CommitteeLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 
-        committeeDisplay = new JLabel("East Asia Summit (Dynamic)");
+        committeeDisplay = new JLabel(parentCommitteeState.getCommitteeName());
         GridBagConstraints gbc_committeeDisplay = new GridBagConstraints();
         gbc_committeeDisplay.anchor = GridBagConstraints.WEST;
         gbc_committeeDisplay.insets = new Insets(0, 0, 5, 0);
@@ -49,7 +54,7 @@ public class HeaderBar extends JPanel {
         gbc_committeeDisplay.gridy = 1;
         panel_1.add(committeeDisplay, gbc_committeeDisplay);
 
-        JLabel TopicLabel = new JLabel("Topic:");
+        JLabel TopicLabel = new JLabel("Current Topic:");
         GridBagConstraints gbc_TopicLabel = new GridBagConstraints();
         gbc_TopicLabel.anchor = GridBagConstraints.EAST;
         gbc_TopicLabel.insets = new Insets(0, 0, 5, 5);
@@ -59,7 +64,7 @@ public class HeaderBar extends JPanel {
         TopicLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         TopicLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 
-        topicDisplay = new JLabel("");
+        topicDisplay = new JLabel(parentCommitteeState.getCurrentTopic());
         GridBagConstraints gbc_topicDisplay = new GridBagConstraints();
         gbc_topicDisplay.anchor = GridBagConstraints.WEST;
         gbc_topicDisplay.insets = new Insets(0, 0, 5, 0);
@@ -111,6 +116,14 @@ public class HeaderBar extends JPanel {
     }
 
     public void setPresentStats(int present, int max) {
-        presentDisplay.setText(present + " / " + max + " (1/2 = " + (int) Math.ceil(max / 2.0) + "; 2/3 = " + (int) Math.ceil(max / 1.5) + ")");
+        if(max == 0)
+            return;
+        presentDisplay.setText(present + " / " + max + " (1/2 = " + (int) Math.ceil(present / 2.0) + "; 2/3 = " + (int) Math.ceil(present / 1.5) + ")");
+    }
+
+    public void update(){
+        setCommittee(parentCommitteeState.getCommitteeName());
+        setTopic(parentCommitteeState.getCurrentTopic());
+        setPresentStats(parentCommitteeState.getPresentCount(), parentCommitteeState.getMaximumCount());
     }
 }
