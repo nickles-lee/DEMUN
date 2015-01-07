@@ -7,7 +7,9 @@ import java.awt.*;
 
 public class DynamicDebateConsole extends JLayeredPane {
 
-    private JPanel genSpeaker, moderatedCaucus, unmoderatedCaucus;
+    private static GeneralSpeakersConsole genSpeaker;
+    private static ModeratedCaucusConsole moderatedCaucus;
+    private static JPanel unmoderatedCaucus;
 
     /**
      * Create the panel.
@@ -51,4 +53,9 @@ public class DynamicDebateConsole extends JLayeredPane {
         }
     }
 
+    public static void update() {
+        if(genSpeaker != null)
+            genSpeaker.update();
+        //moderatedCaucus.update();
+    }
 }

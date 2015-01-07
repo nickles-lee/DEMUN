@@ -37,6 +37,7 @@ public class MainWindow extends JFrame {
 	private HeaderBar headerBar;
 	private MainWindow selfReference;
 	private JMenuItem menuItem_topicA, menuItem_topicB;
+	private DynamicDebateConsole currentDynamicDebateConsole;
 
 	/**
 	 * Launch the application.
@@ -194,6 +195,11 @@ public class MainWindow extends JFrame {
 		contentPane.add(headerBar, gbc_headerBar);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				update();
+			}
+		});
 		tabbedPane.setMinimumSize(new Dimension(560, 400));
 		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
 		gbc_tabbedPane.fill = GridBagConstraints.BOTH;
@@ -220,7 +226,7 @@ public class MainWindow extends JFrame {
 				SingleSpeakerConsole singleSpeakerConsole = new SingleSpeakerConsole();
 				singleSpeaker.add(singleSpeakerConsole, BorderLayout.EAST);
 				
-				DynamicDebateConsole currentDynamicDebateConsole = new DynamicDebateConsole();
+				currentDynamicDebateConsole = new DynamicDebateConsole();
 				tabbedPane.addTab("Current Debate", null, currentDynamicDebateConsole, null);
 				
 				RollcallVoteConsole rollcallVoteConsole = new RollcallVoteConsole();
@@ -242,5 +248,6 @@ public class MainWindow extends JFrame {
 		headerBar.update();
 		menuItem_topicA.setText("Topic A: " + CommitteeState.getTopic1());
 		menuItem_topicB.setText("Topic B: " + CommitteeState.getTopic2());
+		DynamicDebateConsole.update();
 	}
 }

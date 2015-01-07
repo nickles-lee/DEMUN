@@ -120,4 +120,8 @@ public class ControlPanel extends JPanel {
         panel_1.add(btnNewButton_3);
     }
 
+    public void update(){
+        listView.update();
+    }
+
 }
