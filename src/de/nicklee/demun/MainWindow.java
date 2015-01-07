@@ -38,6 +38,7 @@ public class MainWindow extends JFrame {
 	private MainWindow selfReference;
 	private JMenuItem menuItem_topicA, menuItem_topicB;
 	private DynamicDebateConsole currentDynamicDebateConsole;
+	private GeneralSpeakersConsole generalSpeakersList;
 
 	/**
 	 * Launch the application.
@@ -208,7 +209,7 @@ public class MainWindow extends JFrame {
 		gbc_tabbedPane.gridy = 1;
 		contentPane.add(tabbedPane, gbc_tabbedPane);
 		
-		GeneralSpeakersConsole generalSpeakersList = new GeneralSpeakersConsole();
+		generalSpeakersList = new GeneralSpeakersConsole();
 		tabbedPane.addTab("General Speakers List", null, generalSpeakersList, null);
 				
 				JPanel singleSpeaker = new JPanel();
@@ -249,5 +250,6 @@ public class MainWindow extends JFrame {
 		menuItem_topicA.setText("Topic A: " + CommitteeState.getTopic1());
 		menuItem_topicB.setText("Topic B: " + CommitteeState.getTopic2());
 		DynamicDebateConsole.update();
+		generalSpeakersList.update();
 	}
 }

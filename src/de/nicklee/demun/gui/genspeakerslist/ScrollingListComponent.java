@@ -33,7 +33,6 @@ public class ScrollingListComponent extends JPanel {
 
 	public void deleteSelectedElement() {
 		int oldIndex = speakersListView.getSelectedIndex();
-		System.out.println(speakersListView.getSelectedValue());
 		CommitteeState.getSpeakersList().remove(speakersListView.getSelectedValue());
 		speakersListView.setListData(CommitteeState.getSpeakersList().toArray());
 		speakersListView.setSelectedIndex(oldIndex);

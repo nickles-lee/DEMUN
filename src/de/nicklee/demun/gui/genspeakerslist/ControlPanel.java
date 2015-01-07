@@ -1,6 +1,7 @@
 package de.nicklee.demun.gui.genspeakerslist;
 
 import de.nicklee.demun.CommitteeState;
+import de.nicklee.demun.Country;
 import de.nicklee.demun.MainWindow;
 import de.nicklee.demun.gui.SetSpeakerTimePanel;
 
@@ -9,6 +10,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class ControlPanel extends JPanel {
 
@@ -43,6 +48,13 @@ public class ControlPanel extends JPanel {
         this.add(btnNewButton_4, gbc_btnNewButton_4);
 
         JComboBox addToSpeakersList = new JComboBox(MainWindow.getCommState().getPresentCountryList().toArray());
+        addToSpeakersList.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		if(!(CommitteeState.getSpeakersList().contains(addToSpeakersList.getSelectedItem())))
+        			CommitteeState.getSpeakersList().add((Country) addToSpeakersList.getSelectedItem());
+        		listView.update();
+        	}
+        });
         addToSpeakersList.setPreferredSize(new Dimension(100, 27));
         addToSpeakersList.setName("");
         GridBagConstraints gbc_addToSpeakersList = new GridBagConstraints();
