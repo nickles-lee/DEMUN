@@ -1,16 +1,22 @@
 package de.nicklee.demun.gui.genspeakerslist;
 
+import de.nicklee.demun.CommitteeState;
 import de.nicklee.demun.MainWindow;
 import de.nicklee.demun.gui.SetSpeakerTimePanel;
 
 import javax.swing.*;
+
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ControlPanel extends JPanel {
 
     /**
      * Create the panel.
      */
+	private ScrollingListComponent listView;
+	
     public ControlPanel() {
         GridBagLayout gbl_controlPanel = new GridBagLayout();
         gbl_controlPanel.columnWidths = new int[]{0, 225, 0};
@@ -54,7 +60,7 @@ public class ControlPanel extends JPanel {
         gbc_btnNewButton_6.gridy = 2;
         this.add(btnNewButton_6, gbc_btnNewButton_6);
 
-        JPanel listView = new ScrollingListComponent();
+        listView = new ScrollingListComponent();
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.gridheight = 5;
         gbc_panel.insets = new Insets(0, 0, 5, 0);
@@ -106,6 +112,11 @@ public class ControlPanel extends JPanel {
         panel_1.add(btnNewButton_1);
 
         JButton btnNewButton_3 = new JButton("Delete");
+        btnNewButton_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		listView.deleteSelectedElement();
+        	}
+        });
         panel_1.add(btnNewButton_3);
     }
 

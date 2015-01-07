@@ -1,8 +1,11 @@
 package de.nicklee.demun.gui.genspeakerslist;
 
+import de.nicklee.demun.CommitteeState;
+import de.nicklee.demun.Country;
 import de.nicklee.demun.MainWindow;
 
 import javax.swing.*;
+
 import java.awt.*;
 
 public class ScrollingListComponent extends JPanel {
@@ -10,6 +13,8 @@ public class ScrollingListComponent extends JPanel {
     /**
      * Create the panel.
      */
+	public JList speakersListView;
+	
     public ScrollingListComponent() {
         setLayout(new BorderLayout(0, 0));
         JScrollPane scrollPane = new JScrollPane();
@@ -21,9 +26,21 @@ public class ScrollingListComponent extends JPanel {
         gbc_scrollPane.gridy = 2;
         add(scrollPane);
 
-        JList speakersListView = new JList(MainWindow.getCommState().getSpeakersList().toArray());
+        speakersListView = new JList(MainWindow.getCommState().getSpeakersList().toArray());
+        speakersListView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         scrollPane.setViewportView(speakersListView);
-        speakersListView.setLayoutOrientation(JList.VERTICAL_WRAP);
     }
 
+	public void deleteSelectedElement() {
+		int oldIndex = speakersListView.getSelectedIndex();
+		System.out.println(speakersListView.getSelectedValue());
+		CommitteeState.getSpeakersList().remove(speakersListView.getSelectedValue());
+		speakersListView.setListData(CommitteeState.getSpeakersList().toArray());
+		speakersListView.setSelectedIndex(oldIndex);
+		// TODO Auto-generated method stub
+		
+	}
+	public void update(){
+		speakersListView.setListData(CommitteeState.getSpeakersList().toArray());
+	}
 }

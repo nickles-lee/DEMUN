@@ -127,7 +127,7 @@ public class MainWindow extends JFrame {
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("General Discussion");
 		mntmNewMenuItem_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				commState.setCurrentTopic("General Discussion");
+				CommitteeState.setCurrentTopic("General Discussion");
 				selfReference.update();
 			}
 		});
@@ -136,25 +136,25 @@ public class MainWindow extends JFrame {
 		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Agenda Setting");
 		mntmNewMenuItem_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				commState.setCurrentTopic("Agenda Setting");
+				CommitteeState.setCurrentTopic("Agenda Setting");
 				selfReference.update();
 			}
 		});
 		topicSelectMenu.add(mntmNewMenuItem_12);
 		
-		menuItem_topicA = new JMenuItem("Topic A: " + commState.getTopic1());
+		menuItem_topicA = new JMenuItem("Topic A: " + CommitteeState.getTopic1());
 		menuItem_topicA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				commState.setCurrentTopic(commState.getTopic1());
+				CommitteeState.setCurrentTopic(CommitteeState.getTopic1());
 				selfReference.update();
 			}
 		});
 		topicSelectMenu.add(menuItem_topicA);
 		
-		menuItem_topicB = new JMenuItem("Topic B: " + commState.getTopic2());
+		menuItem_topicB = new JMenuItem("Topic B: " + CommitteeState.getTopic2());
 		menuItem_topicB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				commState.setCurrentTopic(commState.getTopic2());
+				CommitteeState.setCurrentTopic(CommitteeState.getTopic2());
 				selfReference.update();
 			}
 		});
@@ -186,12 +186,9 @@ public class MainWindow extends JFrame {
 		headerBar.setPreferredSize(new Dimension(560, 75));
 		headerBar.setMinimumSize(new Dimension(560, 75));
 		headerBar.setMaximumSize(new Dimension(2147483647, 75));
-		headerBar.setTopic(commState.getCurrentTopic());
-		headerBar.setCommittee(commState.getCommitteeName());
-		headerBar.setPresentStats(5,18);
 		GridBagConstraints gbc_headerBar = new GridBagConstraints();
 		gbc_headerBar.fill = GridBagConstraints.HORIZONTAL;
-		gbc_headerBar.insets = new Insets(0, 0, 5, 0);
+		gbc_headerBar.insets = new Insets(0, 10, 5, 0);
 		gbc_headerBar.gridx = 0;
 		gbc_headerBar.gridy = 0;
 		contentPane.add(headerBar, gbc_headerBar);
@@ -237,12 +234,13 @@ public class MainWindow extends JFrame {
 		gbc_motionManager.gridx = 0;
 		gbc_motionManager.gridy = 2;
 		contentPane.add(motionManager, gbc_motionManager);
+		update();
 	}
 	
 	public static CommitteeState getCommState(){if(commState != null) return commState; else return new CommitteeState();}
 	public void update(){
 		headerBar.update();
-		menuItem_topicA.setText("Topic A: " + commState.getTopic1());
-		menuItem_topicB.setText("Topic B: " + commState.getTopic2());
+		menuItem_topicA.setText("Topic A: " + CommitteeState.getTopic1());
+		menuItem_topicB.setText("Topic B: " + CommitteeState.getTopic2());
 	}
 }

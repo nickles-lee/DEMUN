@@ -10,14 +10,11 @@ public class HeaderBar extends JPanel {
     private JLabel topicDisplay;
     private JLabel committeeDisplay;
     private JLabel presentDisplay;
-    private CommitteeState parentCommitteeState;
 
     /**
      * Create the panel.
-     * @param parentCommitteeState
      */
     public HeaderBar(CommitteeState cs) {
-        parentCommitteeState = cs;
         setLayout(new BorderLayout(0, 0));
 
         JPanel panel_1 = new JPanel();
@@ -46,7 +43,7 @@ public class HeaderBar extends JPanel {
         CommitteeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         CommitteeLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 
-        committeeDisplay = new JLabel(parentCommitteeState.getCommitteeName());
+        committeeDisplay = new JLabel(CommitteeState.getCommitteeName());
         GridBagConstraints gbc_committeeDisplay = new GridBagConstraints();
         gbc_committeeDisplay.anchor = GridBagConstraints.WEST;
         gbc_committeeDisplay.insets = new Insets(0, 0, 5, 0);
@@ -64,7 +61,7 @@ public class HeaderBar extends JPanel {
         TopicLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         TopicLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 
-        topicDisplay = new JLabel(parentCommitteeState.getCurrentTopic());
+        topicDisplay = new JLabel(CommitteeState.getCurrentTopic());
         GridBagConstraints gbc_topicDisplay = new GridBagConstraints();
         gbc_topicDisplay.anchor = GridBagConstraints.WEST;
         gbc_topicDisplay.insets = new Insets(0, 0, 5, 0);
@@ -82,7 +79,7 @@ public class HeaderBar extends JPanel {
         PresentLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         PresentLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 
-        presentDisplay = new JLabel("A / B (1/2 = C ; 2/3 = D)");
+        presentDisplay = new JLabel();
         GridBagConstraints gbc_presentStats = new GridBagConstraints();
         gbc_presentStats.insets = new Insets(0, 0, 5, 0);
         gbc_presentStats.anchor = GridBagConstraints.WEST;
@@ -104,7 +101,7 @@ public class HeaderBar extends JPanel {
         JLabel ConferenceLogo = new JLabel("");
         ConferenceLogo.setIcon(new ImageIcon("/Users/nick/Projects/DEMUN/DEMUN/Graphics/logo.png"));
         panel.add(ConferenceLogo, BorderLayout.CENTER);
-
+        update();
     }
 
     public void setTopic(String top) {
@@ -122,8 +119,8 @@ public class HeaderBar extends JPanel {
     }
 
     public void update(){
-        setCommittee(parentCommitteeState.getCommitteeName());
-        setTopic(parentCommitteeState.getCurrentTopic());
-        setPresentStats(parentCommitteeState.getPresentCount(), parentCommitteeState.getMaximumCount());
+        setCommittee(CommitteeState.getCommitteeName());
+        setTopic(CommitteeState.getCurrentTopic());
+        setPresentStats(CommitteeState.getPresentCount(), CommitteeState.getMaximumCount());
     }
 }
