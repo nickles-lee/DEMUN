@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.util.ArrayList;
 
 public class ControlPanel extends JPanel {
 
@@ -115,12 +116,24 @@ public class ControlPanel extends JPanel {
         panel_1.setLayout(new GridLayout(0, 2, 0, 0));
 
         JButton btnNewButton_2 = new JButton("Up");
+        btnNewButton_2.addActionListener(e -> {
+            listView.raiseSelectedElement();
+        });
         panel_1.add(btnNewButton_2);
 
         JButton btnNewButton = new JButton("Down");
+        btnNewButton.addActionListener(e -> {
+            listView.lowerSelectedElement();
+        });
         panel_1.add(btnNewButton);
 
         JButton btnNewButton_1 = new JButton("Clear List");
+        btnNewButton_1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                CommitteeState.clearSpeakersList();
+                listView.update();
+            }
+        });
         panel_1.add(btnNewButton_1);
 
         JButton btnNewButton_3 = new JButton("Delete");

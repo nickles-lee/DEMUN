@@ -1,6 +1,6 @@
 package de.nicklee.demun.gui.moderatedcaucus;
 
-import de.nicklee.demun.flagHandler;
+import de.nicklee.demun.FlagHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,7 @@ public class ModeratedCaucusTimer extends JPanel {
 
         JLabel CountryFlag = new JLabel("");
         try {
-            CountryFlag.setIcon(flagHandler.getScaledFlag("UNST.png", 250));
+            CountryFlag.setIcon(FlagHandler.getScaledFlag("UNST.png", 250));
         } catch (IOException e) {
             CountryFlag.setText("File Error");
         }

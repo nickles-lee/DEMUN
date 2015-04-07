@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class flagHandler {
+public class FlagHandler {
 
     public static ImageIcon getScaledFlag(String flagName, float maxDim) throws IOException {
         Image flagFile = null;

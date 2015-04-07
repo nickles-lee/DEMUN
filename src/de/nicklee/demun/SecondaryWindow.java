@@ -5,6 +5,7 @@ import de.nicklee.demun.gui.genspeakerslist.ScrollingListComponent;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class SecondaryWindow {
 
@@ -45,6 +46,10 @@ public class SecondaryWindow {
 
         TimerView TimerView = new TimerView();
         frame.getContentPane().add(TimerView);
+        frame.addWindowListener(new java.awt.event.WindowAdapter(){
+            public void windowClosing(WindowEvent winEv){
+                frame.dispose();
+        }});
     }
 
     public void toggleVisibility() {

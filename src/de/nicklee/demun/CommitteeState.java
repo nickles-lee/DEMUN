@@ -14,18 +14,18 @@ public class CommitteeState {
     //More lists will be added
     private static int defaultSpeakingMinutes = 1;
     private static int defaultSpeakingSeconds = 0;
-    private static String committeeName = "";
+    private static String committeeName;
     private static String topic1 = "";
     private static String topic2 = "";
     private static String currentTopic = "";
-    public static String debateType = "";
+    public static String debateType = "gsl"; //gsl == Gen. Speakers List, //mod //unmod
 
     public CommitteeState() {
         setMasterCountryList(importDefaultCountryXML());
         getMasterCountryList().addAll(importCustomCountryXML());        //Currently does nothing until this is added
         setCommitteeCountryList(new ArrayList<Country>(getMasterCountryList()));
         setPresentCountryList(new ArrayList<Country>(getCommitteeCountryList()));
-        setSpeakersList(new ArrayList<Country>(getPresentCountryList()));
+        setSpeakersList(new ArrayList<Country>());
         setCommitteeName("General Assembly");
         setCurrentTopic("General Discussion");
     }
@@ -65,6 +65,10 @@ public class CommitteeState {
 
     public static void setSpeakersList(List<Country> sl) {
         speakersList = sl;
+    }
+
+    public static void clearSpeakersList(){
+        speakersList.clear();
     }
 
     public static int getDefaultSpeakingMinutes() {
